@@ -14,12 +14,12 @@ if(!directory.exists()) {
 }
 
 //do the work
-getImageURLs(username, numberOfTweetsToSearch).each {
+getTweets(username, numberOfTweetsToSearch).each {
 	downloadImage(it, directory)
 }
 
 //helper functions
-List<SwitchTweet> getImageURLs(String username, int count) {
+List<SwitchTweet> getTweets(String username, int count) {
 	Twitter twitter = TwitterFactory.getSingleton()
 	Paging paging = new Paging(1, count);
 	List<Status> statuses = twitter.getUserTimeline(username, paging);
@@ -27,11 +27,10 @@ List<SwitchTweet> getImageURLs(String username, int count) {
 	List<SwitchTweet> tweets = []
 
 	statuses.each{ status ->
-
 		SwitchTweet tweet = new SwitchTweet()
-		tweet.tweetDate = status.createdAt
 		tweet.source = status.source
 		if(tweet.fromNintendo) {
+			tweet.tweetDate = status.createdAt
 			tweet.imageUrl = status.mediaEntities.first().mediaURL
 			tweets << tweet
 		}
