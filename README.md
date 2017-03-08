@@ -1,5 +1,7 @@
 # Nintendo Switch Screenshot Downloader
 
+I like being able to share screenshots from my Nintendo Switch to Twitter, but I'd also like to download a copy. This groovy script reads your timeline and downloads the screenshots to your computer.
+
 ## Twitter setup
 
 I have a dedicated twitter account that I use only for posting screenshots from the Nintendo Switch. In my case it is marked as private, and my main twitter account has access.
