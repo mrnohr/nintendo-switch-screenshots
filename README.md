@@ -30,4 +30,4 @@ Then just run:
 
 	groovy screenshots.groovy
 
-It pulls the last 10 (or whatever you changed it to) tweets from your user, and downloads the image.
+It pulls the last 10 (or whatever you changed it to) tweets from your user, and downloads the image. It will not download the same image twice.
