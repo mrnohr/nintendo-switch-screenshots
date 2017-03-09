@@ -31,8 +31,15 @@ List<SwitchTweet> getTweets(String username, int count) {
 		tweet.source = status.source
 		if(tweet.fromNintendo) {
 			tweet.tweetDate = status.createdAt
-			tweet.imageUrl = status.mediaEntities.first().mediaURL
-			tweets << tweet
+			tweet.imageUrl = status.mediaEntities?.first()?.mediaURL
+			if(tweet.imageUrl) {
+				tweets << tweet
+			} else {
+				//println "This tweet did not have an image"
+			}
+
+		} else {
+			//println "Not a tweet from Nintendo Switch: ${status.text}"
 		}
 	}
 	return tweets
