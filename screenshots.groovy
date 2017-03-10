@@ -41,7 +41,7 @@ boolean fromNintendo(Status status) {
 
 //download method
 void downloadImage(SwitchTweet tweet, File directory) {
-    String filename = tweet.tweetDate.format("yyyy-MM-dd_HH:mm:ss") + ".jpg"
+    String filename = tweet.tweetDate.format("yyyy-MM-dd_HH-mm-ss") + ".jpg"
     def file = new File(filename, directory)
     if(file.exists()){
         println "Already downloaded $filename"
