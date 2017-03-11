@@ -3,7 +3,7 @@
 import twitter4j.*
 
 String username = "<twitter-user>"
-int numberOfTweetsToSearch = 10
+int numberOfTweetsToSearch = 25
 File directory = new File("downloads");
 
 //setup download directory
