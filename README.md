@@ -2,6 +2,8 @@
 
 I like being able to share screenshots from my Nintendo Switch to Twitter, but I'd also like to download a copy. This groovy script reads your timeline and downloads the screenshots to your computer.
 
+![Alt text](images/2017-03-07_12-52-53.jpg?raw=true "Zelda")
+
 ## Twitter Account Setup
 
 I have a dedicated twitter account that I use only for posting screenshots from the Nintendo Switch. In my case it is marked as private, and my main twitter account has access.
@@ -33,3 +35,7 @@ Then just run:
 	groovy screenshots.groovy
 
 It pulls the last 25 (can be changed in `screenshots.groovy`) tweets from your user, and downloads the image. It will not download the same image twice because it names the files based on the date of the tweet.
+
+## Image information
+
+In my tests, the downloaded images have a resolution of 1200x675 and are in .jpg format.
