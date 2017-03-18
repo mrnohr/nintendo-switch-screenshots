@@ -4,6 +4,10 @@ I like being able to share screenshots from my Nintendo Switch to Twitter, but I
 
 ![Alt text](images/2017-03-07_12-52-53.jpg?raw=true "Zelda")
 
+## Downloading
+
+Either clone this repository or download the latest [release](https://github.com/mrnohr/nintendo-switch-screenshots/releases). All you really need is the `screenshots.groovy` file. The `twitter4j.properties.example` file is a template that you can use when setting up twitter auth.
+
 ## Twitter Account Setup
 
 I have a dedicated twitter account that I use only for posting screenshots from the Nintendo Switch. In my case it is marked as private, and my main twitter account has access.
