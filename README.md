@@ -50,4 +50,4 @@ It will not download the same image twice because it names the files based on th
 
 ## Image information
 
-In my tests, the downloaded images have a resolution of 1200x675 and are in .jpg format.
+In my tests, the downloaded images have a resolution of 1280x720 and are in .jpg format.
