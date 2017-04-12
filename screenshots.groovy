@@ -48,7 +48,7 @@ void downloadImage(SwitchTweet tweet, File directory) {
     } else {
         println "Downloading to $filename"
         def fileOutputStream = file.newOutputStream()
-        fileOutputStream << new URL(tweet.imageUrl).openStream()
+        fileOutputStream << new URL("${tweet.imageUrl}:large").openStream()
         fileOutputStream.close()
     }
 }
