@@ -2,7 +2,7 @@
 
 I like being able to share screenshots from my Nintendo Switch to Twitter, but I'd also like to download a copy. This groovy script reads your timeline and downloads the screenshots to your computer.
 
-![Alt text](images/2017-03-07_12-52-53.jpg?raw=true "Zelda")
+![Alt text](images/readme-header.jpg?raw=true "Zelda")
 
 ## Downloading
 
