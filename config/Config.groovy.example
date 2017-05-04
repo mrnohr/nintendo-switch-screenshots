@@ -1,0 +1,8 @@
+numberOfTweets=25
+twitterUser="<add user>"
+downloadDirectory="images/downloaded"
+cropDirectory="images/cropped"
+auditFile="audit/run.log"
+uploaderScript="dropbox/dropbox_uploader.sh"
+dropboxMainDirectory="raw"
+dropboxCroppedDirectory="cropped"
