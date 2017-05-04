@@ -22,7 +22,7 @@ class DropboxUploader extends AbstractAction {
 			println "WARN: Could not find ${downloadedFile.absolutePath}"
 		}
 
-		if(cropped) {
+		if(config.crop.enabled && cropped) {
 			File croppedFile = new File(tweet.croppedFilename, cropDirectory)
 			if(croppedFile.exists()) {
 				//println "Going to upload ${croppedFile.absolutePath}"

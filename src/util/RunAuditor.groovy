@@ -53,6 +53,17 @@ class RunAuditor {
 		audits << logEntry
 	}
 
+	public isCropped(SwitchTweet tweet) {
+		AuditLog logEntry = audits.find{it.twitterId == tweet.twitterId}
+		return logEntry ? logEntry.cropped : false
+	}
+
+	public markCropped(SwitchTweet tweet) {
+		AuditLog logEntry = createOrPopLog(tweet)
+		logEntry.cropped = true
+		audits << logEntry
+	}
+
 	private AuditLog createOrPopLog(SwitchTweet tweet) {
 		AuditLog logEntry = audits.find{it.twitterId == tweet.twitterId}
 		if(logEntry) {
@@ -89,6 +100,7 @@ class RunAuditor {
 		boolean downloadedImage = false
 		boolean uploadedToDropbox = false
 		boolean deleted = false
+		boolean cropped = false
 
 		public AuditLog() {}
 
@@ -98,10 +110,11 @@ class RunAuditor {
 			downloadedImage = parts[1].toBoolean()
 			uploadedToDropbox = parts[2].toBoolean()
 			deleted = parts[3]?.toBoolean() ?: false
+			cropped = parts[4]?.toBoolean() ?: false
 		}
 
 		public toLogString() {
-			return [twitterId, downloadedImage, uploadedToDropbox, deleted].join(',')
+			return [twitterId, downloadedImage, uploadedToDropbox, deleted, cropped].join(',')
 		}
 	}
 }

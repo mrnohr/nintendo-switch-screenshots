@@ -14,7 +14,7 @@ crop {
 dropbox {
 	enabled=true
 	uploaderScript="dropbox/dropbox_uploader.sh"
-	mainDirectory="raw"
+	mainDirectory="screenshots"
 	croppedDirectory="cropped"
 }
 

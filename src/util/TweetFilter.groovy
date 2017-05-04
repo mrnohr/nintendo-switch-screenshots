@@ -21,6 +21,12 @@ class TweetFilter {
 		}
 	}
 
+	public static List<SwitchTweet> filterForCropping(List<SwitchTweet> tweets, RunAuditor auditor) {
+		return tweets.findAll {
+			needsCropping(it) && !auditor.isCropped(it)
+		}
+	}
+
 	public static needsCropping(SwitchTweet tweet) {
 		return tweet.hashtags.contains("BreathoftheWild")
 	}
