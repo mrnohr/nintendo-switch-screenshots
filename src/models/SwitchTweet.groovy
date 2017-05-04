@@ -1,4 +1,4 @@
-package src
+package src.models
 
 class SwitchTweet {
 	String twitterId

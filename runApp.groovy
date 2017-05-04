@@ -1,5 +1,9 @@
 import src.*
 
+import src.actions.*
+import src.models.SwitchTweet
+import src.util.*
+
 //Read config
 ConfigObject config = new ConfigSlurper().parse(new File('config/Config.groovy').toURL())
 

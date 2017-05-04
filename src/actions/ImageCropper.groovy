@@ -1,8 +1,10 @@
-package src
+package src.actions
 
 import java.awt.Image
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
+
+import src.models.SwitchTweet
 
 class ImageCropper {
 	ConfigObject config

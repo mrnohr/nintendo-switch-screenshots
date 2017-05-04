@@ -1,4 +1,6 @@
-package src
+package src.util
+
+import src.models.SwitchTweet
 
 class TweetFilter {
 	public static List<SwitchTweet> filterForDownload(List<SwitchTweet> tweets, RunAuditor auditor) {

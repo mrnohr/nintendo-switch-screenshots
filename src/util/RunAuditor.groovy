@@ -1,4 +1,6 @@
-package src
+package src.util
+
+import src.models.SwitchTweet
 
 class RunAuditor {
 	ConfigObject config

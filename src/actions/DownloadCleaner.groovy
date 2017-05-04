@@ -1,4 +1,6 @@
-package src
+package src.actions
+
+import src.models.SwitchTweet
 
 class DownloadCleaner {
 	ConfigObject config
