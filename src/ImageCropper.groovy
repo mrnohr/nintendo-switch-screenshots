@@ -34,12 +34,12 @@ class ImageCropper {
 	}
 
 	private validateOrCreateDirectory(){
-		downloadDirectory = new File(config.downloadDirectory)
+		downloadDirectory = new File(config.download.directory)
 		if(!downloadDirectory.exists()) {
 			throw FileNotFoundException("Could not crop because $downloadDirectory does not exist")
 		}
 
-		cropDirectory = new File(config.cropDirectory)
+		cropDirectory = new File(config.crop.directory)
 		if(!cropDirectory.exists()) {
 			println "Creating directory ${cropDirectory.absolutePath}"
 			cropDirectory.mkdirs()

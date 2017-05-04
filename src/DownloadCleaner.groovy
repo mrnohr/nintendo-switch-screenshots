@@ -33,8 +33,8 @@ class DownloadCleaner {
 
 
 	private initializeDirectories(){
-		downloadDirectory = new File(config.downloadDirectory)
-		cropDirectory = new File(config.cropDirectory)
+		downloadDirectory = new File(config.download.directory)
+		cropDirectory = new File(config.crop.directory)
 
 		if(!downloadDirectory.exists()) {
 			throw new FileNotFoundException("What did you do? $downloadDirectory does not exist")

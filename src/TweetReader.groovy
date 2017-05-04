@@ -12,9 +12,9 @@ class TweetReader {
 
 	List<SwitchTweet> readTweets() {
 		Twitter twitter = TwitterFactory.getSingleton()
-		int pageNumber = config.pageNumber ?: 1
-		Paging paging = new Paging(pageNumber, config.numberOfTweets);
-		List<Status> tweets = twitter.getUserTimeline(config.twitterUser, paging);
+		int pageNumber = config.download.pageNumber ?: 1
+		Paging paging = new Paging(pageNumber, config.download.numberOfTweets);
+		List<Status> tweets = twitter.getUserTimeline(config.download.twitterUser, paging);
 
 		return convertToSwitchTweets(tweets)
 	}

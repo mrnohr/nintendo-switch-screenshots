@@ -1,8 +1,25 @@
-numberOfTweets=25
-twitterUser="<add user>"
-downloadDirectory="images/downloaded"
-cropDirectory="images/cropped"
+download {
+	enabled=true
+	twitterUser="<add user>"
+	numberOfTweets=10
+	pageNumber=1
+	directory="images/downloaded"
+}
+
+crop {
+	enabled=true
+	directory="images/cropped"
+}
+
+dropbox {
+	enabled=true
+	uploaderScript="dropbox/dropbox_uploader.sh"
+	mainDirectory="raw"
+	croppedDirectory="cropped"
+}
+
+delete {
+	enabled=true
+}
+
 auditFile="audit/run.log"
-uploaderScript="dropbox/dropbox_uploader.sh"
-dropboxMainDirectory="raw"
-dropboxCroppedDirectory="cropped"

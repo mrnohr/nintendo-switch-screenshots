@@ -36,7 +36,7 @@ class DropboxUploader {
 	}
 
 	private uploadFile(File file, boolean cropped) {
-		String dropboxDestination = cropped ? "${config.dropboxCroppedDirectory}/${file.name}" : "${config.dropboxMainDirectory}/${file.name}"
+		String dropboxDestination = cropped ? "${config.dropbox.croppedDirectory}/${file.name}" : "${config.dropbox.mainDirectory}/${file.name}"
 		String command = "${uploaderScript.absolutePath} upload ${file.absolutePath} ${dropboxDestination}"
 
 		def process = new ProcessBuilder(addShellPrefix(command))
@@ -57,8 +57,8 @@ class DropboxUploader {
 	}
 
 	private initializeDirectories(){
-		downloadDirectory = new File(config.downloadDirectory)
-		cropDirectory = new File(config.cropDirectory)
+		downloadDirectory = new File(config.download.directory)
+		cropDirectory = new File(config.crop.directory)
 
 		if(!downloadDirectory.exists()) {
 			throw new FileNotFoundException("What did you do? $downloadDirectory does not exist")
@@ -70,7 +70,7 @@ class DropboxUploader {
 	}
 
 	private initializeScriptLocation() {
-		uploaderScript = new File(config.uploaderScript)
+		uploaderScript = new File(config.dropbox.uploaderScript)
 		if(!uploaderScript.exists()) {
 			throw new FileNotFoundException("Could not find dropbox uploader script ${uploaderScript.absolutePath}")
 		}

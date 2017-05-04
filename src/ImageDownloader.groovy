@@ -18,7 +18,7 @@ class ImageDownloader {
 	}
 
 	private validateOrCreateDirectory(){
-		directory = new File(config.downloadDirectory)
+		directory = new File(config.download.directory)
 		if(!directory.exists()) {
 			println "Creating directory ${directory.absolutePath}"
 			directory.mkdirs()

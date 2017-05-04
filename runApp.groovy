@@ -15,33 +15,41 @@ DownloadCleaner cleaner = new DownloadCleaner(config)
 List<SwitchTweet> tweets = reader.readTweets()
 
 //Download images
-List<SwitchTweet> filteredTweets = TweetFilter.filterForDownload(tweets, auditor)
-(tweets - filteredTweets).each{
-	println "Already downloaded ${it.filenameBase}"
-}
-filteredTweets.each {
-	downloader.downloadImage(it)
-	auditor.markDownloaded(it)
-
-	//crop if needed
-	if(TweetFilter.needsCropping(it)) {
-		cropper.cropImage(it)
+if(config.download.enabled) {
+	List<SwitchTweet> filteredTweets = TweetFilter.filterForDownload(tweets, auditor)
+	(tweets - filteredTweets).each {
+		println "Already downloaded ${it.filenameBase}"
 	}
+	filteredTweets.each {
+		downloader.downloadImage(it)
+		auditor.markDownloaded(it)
+
+		//crop if needed
+		if(config.crop.enabled) {
+			if(TweetFilter.needsCropping(it)) {
+				cropper.cropImage(it)
+			}
+		}
+	}
+	auditor.writeAuditLog()
 }
-auditor.writeAuditLog()
 
 //Upload images
-filteredTweets = TweetFilter.filterForUpload(tweets, auditor)
-filteredTweets.each {
-	dropbox.upload(it, TweetFilter.needsCropping(it))
-	auditor.markUploaded(it)
+if(config.dropbox.enabled) {
+	filteredTweets = TweetFilter.filterForUpload(tweets, auditor)
+	filteredTweets.each {
+		dropbox.upload(it, TweetFilter.needsCropping(it))
+		auditor.markUploaded(it)
+	}
+	auditor.writeAuditLog()
 }
-auditor.writeAuditLog()
 
 //Delete the images
-filteredTweets = TweetFilter.filterForDelete(tweets, auditor)
-filteredTweets.each{
-	cleaner.delete(it, TweetFilter.needsCropping(it))
-	auditor.markDeleted(it)
+if(config.delete.enabled) {
+	filteredTweets = TweetFilter.filterForDelete(tweets, auditor)
+	filteredTweets.each {
+		cleaner.delete(it, TweetFilter.needsCropping(it))
+		auditor.markDeleted(it)
+	}
+	auditor.writeAuditLog()
 }
-auditor.writeAuditLog()
