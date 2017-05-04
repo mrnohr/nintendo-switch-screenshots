@@ -6,14 +6,9 @@ import javax.imageio.ImageIO
 
 import src.models.SwitchTweet
 
-class ImageCropper {
-	ConfigObject config
-	File downloadDirectory
-	File cropDirectory
-
+class ImageCropper extends AbstractAction{
 	public ImageCropper(ConfigObject config) {
-		this.config = config
-		validateOrCreateDirectory()
+		super(config)
 	}
 
 	public void cropImage(SwitchTweet tweet) {
@@ -33,18 +28,5 @@ class ImageCropper {
 		dst.getGraphics().drawImage(src, 0, 0, w, h, x, y, x + w, y + h, null)
 
 		ImageIO.write(dst, "png", outputFile)
-	}
-
-	private validateOrCreateDirectory(){
-		downloadDirectory = new File(config.download.directory)
-		if(!downloadDirectory.exists()) {
-			throw FileNotFoundException("Could not crop because $downloadDirectory does not exist")
-		}
-
-		cropDirectory = new File(config.crop.directory)
-		if(!cropDirectory.exists()) {
-			println "Creating directory ${cropDirectory.absolutePath}"
-			cropDirectory.mkdirs()
-		}
 	}
 }

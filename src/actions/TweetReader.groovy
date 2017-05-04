@@ -5,11 +5,10 @@ import src.models.SwitchTweet
 import twitter4j.*
 
 @Grab(group="org.twitter4j", module="twitter4j-core", version="[3.0,)")
-class TweetReader {
-	ConfigObject config
+class TweetReader extends AbstractAction{
 
 	public TweetReader(ConfigObject config) {
-		this.config = config
+		super(config)
 	}
 
 	List<SwitchTweet> readTweets() {

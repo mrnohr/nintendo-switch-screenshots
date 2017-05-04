@@ -2,14 +2,9 @@ package src.actions
 
 import src.models.SwitchTweet
 
-class DownloadCleaner {
-	ConfigObject config
-	File downloadDirectory
-	File cropDirectory
-
+class DownloadCleaner extends AbstractAction{
 	public DownloadCleaner(ConfigObject config) {
-		this.config = config
-		initializeDirectories()
+		super(config)
 	}
 
 	public delete(SwitchTweet tweet, boolean cropped = false) {
@@ -29,21 +24,6 @@ class DownloadCleaner {
 			} else {
 				println "WARN: Could not find ${croppedFile.absolutePath}"
 			}
-		}
-	}
-
-
-
-	private initializeDirectories(){
-		downloadDirectory = new File(config.download.directory)
-		cropDirectory = new File(config.crop.directory)
-
-		if(!downloadDirectory.exists()) {
-			throw new FileNotFoundException("What did you do? $downloadDirectory does not exist")
-		}
-
-		if(!cropDirectory.exists()) {
-			throw new FileNotFoundException("What did you do? $cropDirectory does not exist")
 		}
 	}
 }

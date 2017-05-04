@@ -2,28 +2,16 @@ package src.actions
 
 import src.models.SwitchTweet
 
-class ImageDownloader {
-	ConfigObject config
-	File directory
-
+class ImageDownloader extends AbstractAction {
 	public ImageDownloader(ConfigObject config) {
-		this.config = config
-		validateOrCreateDirectory()
+		super(config)
 	}
 
 	public void downloadImage(SwitchTweet tweet) {
 		println "Going to download ${tweet.imageUrlLarge} to ${tweet.downloadFilename}"
-		File file = new File(tweet.downloadFilename, directory)
+		File file = new File(tweet.downloadFilename, downloadDirectory)
 		def fileOutputStream = file.newOutputStream()
 		fileOutputStream << new URL(tweet.imageUrlLarge).openStream()
 		fileOutputStream.close()
-	}
-
-	private validateOrCreateDirectory(){
-		directory = new File(config.download.directory)
-		if(!directory.exists()) {
-			println "Creating directory ${directory.absolutePath}"
-			directory.mkdirs()
-		}
 	}
 }

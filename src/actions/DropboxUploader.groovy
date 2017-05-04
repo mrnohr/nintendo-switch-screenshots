@@ -2,18 +2,14 @@ package src.actions
 
 import src.models.SwitchTweet
 
-class DropboxUploader {
-	ConfigObject config
-	File downloadDirectory
-	File cropDirectory
+class DropboxUploader extends AbstractAction {
 	File workingDirectory = new File(".")
 
 	File uploaderScript
 
 
 	public DropboxUploader(ConfigObject config) {
-		this.config = config
-		initializeDirectories()
+		super(config)
 		initializeScriptLocation()
 	}
 
@@ -56,19 +52,6 @@ class DropboxUploader {
 		commandArray[1] = "-c"
 		commandArray[2] = command
 		return commandArray
-	}
-
-	private initializeDirectories(){
-		downloadDirectory = new File(config.download.directory)
-		cropDirectory = new File(config.crop.directory)
-
-		if(!downloadDirectory.exists()) {
-			throw new FileNotFoundException("What did you do? $downloadDirectory does not exist")
-		}
-
-		if(!cropDirectory.exists()) {
-			throw new FileNotFoundException("What did you do? $cropDirectory does not exist")
-		}
 	}
 
 	private initializeScriptLocation() {
