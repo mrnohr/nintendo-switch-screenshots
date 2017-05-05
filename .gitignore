@@ -1,3 +1,5 @@
 twitter4j.properties
 audit/run.log
 config/Config.groovy
+images/downloaded/*
+images/cropped/*
