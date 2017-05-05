@@ -13,9 +13,9 @@ crop {
 
 dropbox {
 	enabled=true
-	uploaderScript="dropbox/dropbox_uploader.sh"
-	mainDirectory="screenshots"
-	croppedDirectory="cropped"
+	accessToken="<add dropbox access token>"
+	mainDirectory="/screenshots"
+	croppedDirectory="/cropped"
 }
 
 delete {

@@ -1,16 +1,21 @@
 package src.actions
 
+import com.dropbox.core.DbxRequestConfig
+import com.dropbox.core.v2.DbxClientV2
+import com.dropbox.core.v2.files.FileMetadata
+
+import java.io.FileInputStream
+import java.io.InputStream
+
 import src.models.SwitchTweet
 
+@Grab(group='com.dropbox.core', module='dropbox-core-sdk', version='3.0.3')
 class DropboxUploader extends AbstractAction {
-	File workingDirectory = new File(".")
-
-	File uploaderScript
-
+	DbxClientV2 client
 
 	public DropboxUploader(ConfigObject config) {
 		super(config)
-		initializeScriptLocation()
+		initializeDropbox()
 	}
 
 	public upload(SwitchTweet tweet, boolean cropped = false) {
@@ -33,32 +38,17 @@ class DropboxUploader extends AbstractAction {
 		}
 	}
 
-	private uploadFile(File file, boolean cropped) {
+	private void uploadFile(File file, boolean cropped) {
 		String dropboxDestination = cropped ? "${config.dropbox.croppedDirectory}/${file.name}" : "${config.dropbox.mainDirectory}/${file.name}"
-		String command = "${uploaderScript.absolutePath} upload ${file.absolutePath} ${dropboxDestination}"
 
-		def process = new ProcessBuilder(addShellPrefix(command))
-				.directory(workingDirectory)
-				.redirectErrorStream(true)
-				.start()
-		process.inputStream.eachLine {println it}
-		process.waitFor();
-		def exitValue = process.exitValue()
+		InputStream inputStream = new FileInputStream(file)
+		FileMetadata metadata = client.files().uploadBuilder(dropboxDestination).uploadAndFinish(inputStream);
+		println "Uploaded to dropbox: ${metadata.getPathDisplay()}"
 	}
 
-	private def addShellPrefix(String command) {
-		def commandArray = new String[3]
-		commandArray[0] = "sh"
-		commandArray[1] = "-c"
-		commandArray[2] = command
-		return commandArray
-	}
-
-	private initializeScriptLocation() {
-		uploaderScript = new File(config.dropbox.uploaderScript)
-		if(!uploaderScript.exists()) {
-			throw new FileNotFoundException("Could not find dropbox uploader script ${uploaderScript.absolutePath}")
-		}
+	private void initializeDropbox() {
+		DbxRequestConfig dropboxConfig = DbxRequestConfig.newBuilder("switch-screens").build()
+		client = new DbxClientV2(dropboxConfig, config.dropbox.accessToken)
 	}
 
 }
